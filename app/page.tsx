@@ -14,7 +14,7 @@ export default function Home() {
   const [sessionDuration, setSessionDuration] = useState(25)
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const verseRef = useRef<BibleVerseDisplayRef>(null)
-  const supabase = createClient()
+  const supabase = typeof window !== 'undefined' ? createClient() : null
   const verseChangeIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // Auto-change verse every 5 minutes while timer is running
@@ -44,24 +44,30 @@ export default function Home() {
     setIsTimerRunning(false)
     const duration = completedMinutes
     
-    // Check if user is logged in and record the session
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (user) {
+    // Only try to record session if Supabase is configured
+    if (supabase) {
       try {
-        const { error } = await supabase.from('focus_sessions').insert({
-          user_id: user.id,
-          duration_minutes: duration,
-          completed_at: new Date().toISOString(),
-        })
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
 
-        if (error) {
-          console.error('Error recording session:', error)
+        if (user) {
+          try {
+            const { error } = await supabase.from('focus_sessions').insert({
+              user_id: user.id,
+              duration_minutes: duration,
+              completed_at: new Date().toISOString(),
+            })
+
+            if (error) {
+              console.error('Error recording session:', error)
+            }
+          } catch (error) {
+            console.error('Error recording session:', error)
+          }
         }
       } catch (error) {
-        console.error('Error recording session:', error)
+        // Silently fail if Supabase isn't configured
       }
     }
   }
