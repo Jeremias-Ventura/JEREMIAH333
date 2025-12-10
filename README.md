@@ -26,36 +26,6 @@ Stay encouraged as you work with Scripture displayed beside the timer. A new ver
 - **Supabase** (for future features)
 - **Framer Motion** (for smooth animations)
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- A Supabase account (for future features)
-
-### Setup
-
-1. **Clone and install**:
-   ```bash
-   npm install
-   ```
-
-2. **Set up environment variables**:
-   Create a `.env.local` file:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   NEXT_PUBLIC_SITE_URL=http://localhost:3000
-   ```
-
-3. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
 ## Coming Soon
 
 We're working on adding features that will help you go deeper:
@@ -65,10 +35,6 @@ We're working on adding features that will help you go deeper:
 - **Custom Verses**: Add your own favorite Bible verses to the rotation. Create a personal collection of Scripture that speaks to you and keep them close as you work.
 
 These features will be available soon. For now, enjoy the simple, peaceful focus that JEREMIAH33:3 provides.
-
-## Deployment
-
-Deploy to Vercel or your preferred platform. Make sure to set the `NEXT_PUBLIC_SITE_URL` environment variable to your production domain.
 
 ## Contact
 
