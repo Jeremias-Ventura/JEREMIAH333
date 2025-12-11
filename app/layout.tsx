@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
 import ConditionalHeader from "@/components/ConditionalHeader";
+import { Analytics } from "@vercel/analytics/react";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -112,6 +113,7 @@ export default function RootLayout({
         <main className="flex-1 overflow-hidden md:overflow-hidden overflow-y-auto md:overflow-y-hidden">
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   );
