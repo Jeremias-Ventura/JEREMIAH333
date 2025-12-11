@@ -88,3 +88,33 @@ input[type="number"] {
   font-family: var(--font-lora), serif !important;
 }
 
+/* Remove tap highlights and unwanted outlines on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Remove default iOS button styles */
+button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
