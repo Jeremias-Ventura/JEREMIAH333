@@ -36,6 +36,7 @@ We're working on adding features that will help you go deeper:
 
 These features will be available soon. For now, enjoy the simple, peaceful focus that JEREMIAH33:3 provides.
 
+
 ## Contact
 
 For feedback, support, or encouragement: jeremiah333app@gmail.com

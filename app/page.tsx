@@ -11,7 +11,6 @@ export const dynamic = 'force-dynamic'
 
 export default function Home() {
   const [sessionCompleted, setSessionCompleted] = useState(false)
-  const [sessionDuration, setSessionDuration] = useState(25)
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const verseRef = useRef<BibleVerseDisplayRef>(null)
   const supabase = typeof window !== 'undefined' ? createClient() : null
@@ -24,7 +23,7 @@ export default function Home() {
         if (verseRef.current) {
           verseRef.current.loadNewVerse()
         }
-      }, 2 * 60 * 1000) // 5 minutes in milliseconds
+      }, 5 * 60 * 1000) // 5 minutes in milliseconds
     } else {
       if (verseChangeIntervalRef.current) {
         clearInterval(verseChangeIntervalRef.current)
@@ -87,7 +86,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-full flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 p-8 sm:pr-10 md:pr-13 lg:pr-30 relative">
+    <div className="min-h-screen md:h-full flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 p-8 sm:pr-10 md:pr-13 lg:pr-30 relative">
       {/* Subtle meteor shower background - always running */}
       <MeteorShowerBackground />
       

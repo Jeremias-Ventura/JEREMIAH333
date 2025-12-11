@@ -269,7 +269,7 @@ export default function Timer({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full relative">
+    <div className="flex flex-col items-center justify-center w-full h-full relative mt-12 sm:mt-0">
 
       {/* Timer Display */}
       <div className="flex flex-col items-center justify-center text-center">
@@ -288,7 +288,7 @@ export default function Timer({
                 setTimeInput(formatTime(totalSeconds))
               }
             }}
-            className="text-8xl md:text-9xl font-light text-white bg-transparent border-[1px] border-slate-800 rounded-lg px-0  outline-none text-center w-3/4 focus:border-slate-600"
+            className="text-8xl md:text-9xl font-light text-white bg-transparent border border-slate-800 rounded-lg px-0  outline-none text-center w-3/4 focus:border-slate-600"
             style={{ fontWeight: 300 }}
             autoFocus
             placeholder="MM:SS"
@@ -347,7 +347,7 @@ export default function Timer({
         {isComplete && (
           <button
             onClick={handleReset}
-            className="cursor-pointer rounded-md bg-emerald-600/60 px-6 py-2 text-sm text-slate-100 transition-colors hover:bg-emerald-500/60 focus:outline-none uppercase font-medium"
+            className="cursor-pointer rounded-2xl bg-emerald-600/60 px-6 py-2 text-sm text-slate-100 transition-colors hover:bg-emerald-500/60 focus:outline-none uppercase font-medium"
           >
             DONE
           </button>

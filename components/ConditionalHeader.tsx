@@ -5,7 +5,7 @@ import Header from './Header'
 
 export default function ConditionalHeader() {
   const pathname = usePathname()
-  const showHeader = !pathname?.includes('/about')
+  const showHeader = pathname !== '/about'
 
   if (!showHeader) return null
 

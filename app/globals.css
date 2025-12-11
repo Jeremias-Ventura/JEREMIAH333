@@ -12,10 +12,24 @@
 }
 
 html, body {
-  height: 100vh;
-  overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+/* Desktop: fixed 100vh, no scrolling */
+@media (min-width: 768px) {
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+/* Mobile: allow scrolling */
+@media (max-width: 767px) {
+  html, body {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
 }
 
 body {
@@ -59,5 +73,18 @@ input[type="number"] {
   font-weight: 300 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fillout embed font styling */
+.fillout-embed,
+.fillout-embed *,
+.fillout-embed iframe,
+[data-fillout-id] {
+  font-family: var(--font-lora), serif !important;
+}
+
+/* Target Fillout iframe content */
+.fillout-embed iframe {
+  font-family: var(--font-lora), serif !important;
 }
 

@@ -37,11 +37,11 @@ const BibleVerseDisplay = forwardRef<
   }, [onNewSession]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full mb-20">
+    <div className="flex flex-col items-center justify-center w-full h-full mb-10">
       {/* New Verse Button */}
       <button
         onClick={loadNewVerse}
-        className="mb-3 sm:mb-3 text-sm text-slate-400 transition-colors hover:text-white hover:cursor-pointer focus:outline-none px-4 py-2 rounded-2xl hover:bg-slate-800 uppercase "
+        className="mb-1 sm:mb-3 sm:mt-0 mt-2 text-sm text-slate-400 transition-colors hover:text-white hover:cursor-pointer focus:outline-none px-4 py-2 rounded-2xl hover:bg-slate-800 uppercase "
       >
         New Verse
       </button>
