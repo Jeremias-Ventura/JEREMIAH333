@@ -64,10 +64,6 @@ export const metadata: Metadata = {
     // yandex: 'your-yandex-verification-code',
     // bing: 'your-bing-verification-code',
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0f1e" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0f1e" },
-  ],
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -80,6 +76,10 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
   },
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0f1e" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0f1e" },
+  ],
 };
 
 export default function RootLayout({
@@ -90,16 +90,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full md:h-full">
       <head>
-        {/* Safari requires favicon.ico first, and prefers larger sizes */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        {/* PNG icons for better Safari support - Safari prefers 64x64 or larger */}
-        <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        {/* Apple touch icon for iOS Safari */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* Safari tends to respect the first icon, prefer SVG if available */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+        {/* Apple touch icon first for iOS Safari */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+        {/* PNG icons in descending size for better Safari support */}
+        <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png?v=3" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" />
+        <link rel="manifest" href="/site.webmanifest?v=3" />
         <meta name="theme-color" content="#0a0f1e" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
