@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jeremias33-3.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jeremiah33-3.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "JEREMIAH33:3 - Timer & Verse",
     description: "A peaceful focus timer with Bible verses. Stay focused with Scripture by your side.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://jeremias33-3.app',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://jeremiah33-3.app',
     siteName: "JEREMIAH33:3",
     locale: "en_US",
     type: "website",
@@ -64,6 +64,10 @@ export const metadata: Metadata = {
     // yandex: 'your-yandex-verification-code',
     // bing: 'your-bing-verification-code',
   },
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0f1e" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0f1e" },
+  ],
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -73,6 +77,7 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
+    shortcut: '/favicon.ico',
   },
 };
 
@@ -85,11 +90,14 @@ export default function RootLayout({
     <html lang="en" className="h-full md:h-full">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0f172a" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#0a0f1e" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body

@@ -288,7 +288,7 @@ export default function Timer({
                 setTimeInput(formatTime(totalSeconds))
               }
             }}
-            className="text-8xl md:text-9xl font-light text-white bg-transparent border border-slate-800 rounded-lg px-0  outline-none text-center w-3/4 focus:border-slate-600"
+            className="text-8xl md:text-9xl font-light text-white bg-transparent border border-slate-800 rounded-lg px-0 outline-none text-center w-3/4 focus:border-slate-600 focus:outline-none"
             style={{ fontWeight: 300 }}
             autoFocus
             placeholder="MM:SS"
