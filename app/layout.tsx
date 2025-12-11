@@ -10,7 +10,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "JEREMIAH33:3 - Timer & Verse",
+  title: "JEREMIAH33:3",
   description: "A peaceful focus timer with Bible verses. Stay focused with Scripture by your side.",
   keywords: ["pomodoro timer", "focus timer", "bible verses", "faith-based productivity", "christian productivity", "study timer", "work timer", "scripture", "jeremiah 33:3"],
   authors: [{ name: "JEREMIAH33:3" }],
@@ -71,8 +71,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-64x64.png', sizes: '64x64', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -89,11 +90,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full md:h-full">
       <head>
+        {/* Safari requires favicon.ico first, and prefers larger sizes */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        {/* PNG icons for better Safari support - Safari prefers 64x64 or larger */}
+        <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        {/* Apple touch icon for iOS Safari */}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0a0f1e" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
