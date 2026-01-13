@@ -3,9 +3,15 @@
 import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import { UserMenu } from '@/components/auth/UserMenu'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
   const { user, loading } = useAuth()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <header className="w-full relative z-50">
@@ -18,7 +24,7 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-4">
-          {loading ? (
+          {!mounted || loading ? (
             <div className="text-sm text-slate-400">...</div>
           ) : user ? (
             <>
