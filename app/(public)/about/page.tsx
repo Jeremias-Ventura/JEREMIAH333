@@ -5,11 +5,12 @@ import Image from "next/image";
 import Script from "next/script";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
-import MeteorShowerBackground from "@/components/MeteorShowerBackground";
+import MeteorShowerBackground from "@/components/ui/MeteorShowerBackground";
 import {
   BookOpen,
   Clock,
   CrossIcon,
+  LayoutDashboard,
   Mail,
   MoonStar,
   Sparkles,
@@ -112,8 +113,6 @@ export default function AboutPage() {
   });
   const comingSoonRef = useRef(null);
   const comingSoonDividerRef = useRef(null);
-  const dashboardRef = useRef(null);
-  const dashboardImageRef = useRef(null);
   const customVersesRef = useRef(null);
   const customVersesImageRef = useRef(null);
   const waitlistRef = useRef(null);
@@ -123,14 +122,6 @@ export default function AboutPage() {
     margin: "-100px",
   });
   const comingSoonDividerInView = useInView(comingSoonDividerRef, {
-    once: true,
-    margin: "-100px",
-  });
-  const dashboardInView = useInView(dashboardRef, {
-    once: true,
-    margin: "-100px",
-  });
-  const dashboardImageInView = useInView(dashboardImageRef, {
     once: true,
     margin: "-100px",
   });
@@ -189,7 +180,7 @@ export default function AboutPage() {
               titleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }
             }
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-3xl md:text-4xl font-regular mb-20"
+            className="text-3xl md:text-4xl font-light mb-20"
           >
             JEREMIAH33:3
           </motion.h1>
@@ -206,7 +197,7 @@ export default function AboutPage() {
                 delay: 0.3,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="text-base md:text-lg font-normal mb-1"
+              className="text-base md:text-lg font-light mb-1"
             >
               " Call to me and I will answer you and tell you great and
               unsearchable things you do not know. "
@@ -222,7 +213,7 @@ export default function AboutPage() {
                 delay: 0.3,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="text-base md:text-lg font-normal mb-1"
+              className="text-base md:text-lg font-light mb-1"
             >
               Jeremiah 33:3 (NIV)
             </motion.p>
@@ -263,7 +254,7 @@ export default function AboutPage() {
               meaningInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-3xl md:text-4xl font-regular text-center mb-6"
+            className="text-3xl md:text-4xl font-light text-center mb-6"
           >
             Meaning Behind the Name
           </motion.h2>
@@ -274,7 +265,7 @@ export default function AboutPage() {
                 meaningInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-              className="text-xl md:text-3xl font-regular mb-4"
+              className="text-xl md:text-3xl font-light mb-4"
             >
               The What
             </motion.h3>
@@ -419,7 +410,7 @@ export default function AboutPage() {
               featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-3xl md:text-4xl font-regular text-center mb-16"
+            className="text-3xl md:text-4xl font-light text-center mb-16"
           >
             What This App Does
           </motion.h2>
@@ -459,7 +450,7 @@ export default function AboutPage() {
                       : { opacity: 0, y: 10 }
                   }
                   transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                  className="text-xl md:text-3xl font-regular mb-4"
+                  className="text-xl md:text-3xl font-light mb-4"
                 >
                   Focus Timer
                 </motion.h3>
@@ -467,7 +458,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0 }}
                   animate={featuresInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-                  className="text-lg md:text-lg leading-relaxed max-w-md"
+                  className="text-lg md:text-lg leading-relaxed max-w-md font-light"
                 >
                   Work with intention using a simple, calming countdown timer.
                   It isn't a full Pomodoro system — there are no complex
@@ -512,7 +503,7 @@ export default function AboutPage() {
                       : { opacity: 0, y: 10 }
                   }
                   transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-                  className="text-xl md:text-3xl font-regular mb-4"
+                  className="text-xl md:text-3xl font-light mb-4"
                 >
                   Bible Verse
                 </motion.h3>
@@ -520,13 +511,65 @@ export default function AboutPage() {
                   initial={{ opacity: 0 }}
                   animate={featuresInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-                  className="text-base md:text-lg leading-relaxed max-w-md ml-auto"
+                  className="text-base md:text-lg leading-relaxed max-w-md ml-auto font-light"
                 >
                   Stay encouraged as you work with Scripture displayed beside
                   the timer. A new verse appears every 5 minutes to refresh your
                   motivation and refocus your mind on God's truth. If you ever
                   want additional encouragement, you can generate a new verse at
                   any time with a single click.
+                </motion.p>
+              </div>
+            </motion.div>
+
+            {/* Dashboard Subsection */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={
+                featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }
+              }
+              transition={{
+                duration: 0.7,
+                delay: 1.0,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="flex items-start gap-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={
+                  featuresInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0 }
+                }
+                transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                className="shrink-0 mt-1"
+              >
+                <LayoutDashboard className="w-8 h-8 sm:w-10 sm:h-10 text-white" strokeWidth={1.5} />
+              </motion.div>
+              <div>
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={
+                    featuresInView
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 10 }
+                  }
+                  transition={{ duration: 0.6, delay: 1.1, ease: "easeOut" }}
+                  className="text-xl md:text-3xl font-light mb-4"
+                >
+                  Dashboard
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={featuresInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.7, delay: 1.3, ease: "easeOut" }}
+                  className="text-lg md:text-lg leading-relaxed max-w-md font-light"
+                >
+                  Track your focus sessions and see your progress over time.
+                  View meaningful statistics like total focus time, weekly
+                  summaries, and your consistency streaks — all designed to
+                  encourage discipline, growth, and clarity in your daily work.
                 </motion.p>
               </div>
             </motion.div>
@@ -581,76 +624,12 @@ export default function AboutPage() {
               comingSoonInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-3xl md:text-4xl font-regular text-center mb-16"
+            className="text-3xl md:text-4xl font-light text-center mb-16"
           >
             Coming Soon
           </motion.h2>
 
           <div className="space-y-20">
-            {/* Dashboard Subsection */}
-            <motion.div
-              ref={dashboardRef}
-              initial={{ opacity: 0, x: -40 }}
-              animate={
-                dashboardInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }
-              }
-              transition={{
-                duration: 0.7,
-                delay: 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="flex items-center gap-8 flex-col md:flex-row"
-              style={{ minHeight: "200px" }}
-            >
-              <div className="flex-1">
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={
-                    dashboardInView
-                      ? { opacity: 1, y: 0 }
-                      : { opacity: 0, y: 10 }
-                  }
-                  transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                  className="text-xl md:text-3xl font-regular mb-4"
-                >
-                  Dashboard
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={dashboardInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-                  className="text-lg md:text-lg leading-relaxed max-w-md"
-                >
-                  Track your focus sessions and see your progress over time.
-                  View meaningful statistics like total focus time, weekly
-                  summaries, and your consistency streaks — all designed to
-                  encourage discipline, growth, and clarity in your daily work.
-                </motion.p>
-              </div>
-              <motion.div
-                ref={dashboardImageRef}
-                initial={{ opacity: 0, x: 40, scale: 0.95 }}
-                animate={
-                  dashboardImageInView
-                    ? { opacity: 1, x: 0, scale: 1 }
-                    : { opacity: 0, x: 40, scale: 0.95 }
-                }
-                transition={{
-                  duration: 0.8,
-                  delay: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                className="flex-1 flex justify-center md:justify-end"
-              >
-                <Image
-                  src="/dashboard.png"
-                  alt="Dashboard"
-                  width={500}
-                  height={400}
-                  className="max-w-full h-auto"
-                />
-              </motion.div>
-            </motion.div>
 
             {/* Custom Verses Subsection */}
             <motion.div
@@ -678,7 +657,7 @@ export default function AboutPage() {
                       : { opacity: 0, y: 10 }
                   }
                   transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-                  className="text-xl md:text-3xl font-regular mb-4"
+                  className="text-xl md:text-3xl font-light mb-4"
                 >
                   Custom Verses
                 </motion.h3>
@@ -686,7 +665,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0 }}
                   animate={customVersesInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-                  className="text-lg md:text-lg leading-relaxed max-w-md ml-auto"
+                  className="text-lg md:text-lg leading-relaxed max-w-md ml-auto font-light"
                 >
                   Create your own personal Scripture collection. Add your
                   favorite Bible verses to the rotation and keep the words that
@@ -722,7 +701,7 @@ export default function AboutPage() {
           </div>
 
           {/* Coming Soon Message */}
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={
               comingSoonInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -738,7 +717,7 @@ export default function AboutPage() {
             <br />
             For now, enjoy the simple, peaceful focus that JEREMIAH33:3
             provides.
-          </motion.p>
+          </motion.p> */}
 
           {/* Waitlist Section */}
           {/* <motion.div
@@ -754,7 +733,7 @@ export default function AboutPage() {
             }}
             className="text-center mb-12"
           >
-            <h3 className="text-2xl md:text-3xl font-regular mb-6">
+            <h3 className="text-2xl md:text-3xl font-light mb-6">
               Join the Waitlist
             </h3>
             <motion.div
@@ -790,7 +769,7 @@ export default function AboutPage() {
             }}
             className="text-center"
           >
-            <p className="text-lg mb-4">Stay updated:</p>
+            <p className="text-lg mb-4 mt-10">Stay updated:</p>
             <div className="flex items-center justify-center gap-6">
               <motion.a
                 href="https://tiktok.com/@jeremiah333.app"
@@ -869,9 +848,9 @@ export default function AboutPage() {
             initial={{ opacity: 0 }}
             animate={footerInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-            className="text-sm text-slate-500"
+            className="text-slate-500 text-[10px] uppercase tracking-[0.4em] font-light"
           >
-            © 2025 JEREMIAH33:3
+            © 2025 JEREMIAH33:3 • Stay Grounded
           </motion.p>
         </motion.footer>
       </div>

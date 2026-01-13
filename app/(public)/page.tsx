@@ -2,10 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Timer from '@/components/Timer'
-import BibleVerseDisplay, { type BibleVerseDisplayRef } from '@/components/BibleVerse'
-import ShootingStars from '@/components/ShootingStars'
-import MeteorShowerBackground from '@/components/MeteorShowerBackground'
-import { createClient } from '@/lib/supabase/client'
+import BibleVerseDisplay, { type BibleVerseDisplayRef } from '@/components/ui/BibleVerse'
+import ShootingStars from '@/components/ui/ShootingStars'
+import MeteorShowerBackground from '@/components/ui/MeteorShowerBackground'
+import { createSession } from '@/app/actions/sessions'
+import { useAuth } from '@/hooks/useAuth'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +14,7 @@ export default function Home() {
   const [sessionCompleted, setSessionCompleted] = useState(false)
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const verseRef = useRef<BibleVerseDisplayRef>(null)
-  const supabase = typeof window !== 'undefined' ? createClient() : null
+  const { user } = useAuth()
   const verseChangeIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // Auto-change verse every 5 minutes while timer is running
@@ -41,32 +42,13 @@ export default function Home() {
   const handleSessionComplete = async (completedMinutes: number) => {
     setSessionCompleted(true)
     setIsTimerRunning(false)
-    const duration = completedMinutes
-    
-    // Only try to record session if Supabase is configured
-    if (supabase) {
+
+    // Only save session if user is authenticated
+    if (user) {
       try {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser()
-
-        if (user) {
-          try {
-            const { error } = await supabase.from('focus_sessions').insert({
-              user_id: user.id,
-              duration_minutes: duration,
-              completed_at: new Date().toISOString(),
-            })
-
-            if (error) {
-              console.error('Error recording session:', error)
-            }
-          } catch (error) {
-            console.error('Error recording session:', error)
-          }
-        }
+        await createSession(completedMinutes)
       } catch (error) {
-        // Silently fail if Supabase isn't configured
+        console.error('Error saving session:', error)
       }
     }
   }
@@ -102,12 +84,12 @@ export default function Home() {
           onReset={handleTimerReset}
           initialMinutes={25}
         />
-      </div>
+        </div>
 
       {/* Verse - Bottom on mobile, Right on desktop */}
       <div className="flex-1 flex items-center justify-center md:justify-start w-full md:max-w-2xl sm:-mt-1">
         <BibleVerseDisplay ref={verseRef} />
-      </div>
+        </div>
     </div>
   )
 }

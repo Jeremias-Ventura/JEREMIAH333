@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
-import ConditionalHeader from "@/components/ConditionalHeader";
+import ConditionalHeader from "@/components/layout/ConditionalHeader";
 import { Analytics } from "@vercel/analytics/react";
 
 const lora = Lora({
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png", // You'll add this later
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "JEREMIAH33:3 - Faith-Based Focus Tool",
@@ -59,6 +59,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  category: 'productivity',
+  classification: 'Faith-based productivity tool',
   verification: {
     // Add your verification codes here when you have them
     // google: 'your-google-verification-code',
@@ -110,7 +112,7 @@ export default function RootLayout({
         className={`${lora.variable} font-sans antialiased h-full md:h-full flex flex-col`}
       >
         <ConditionalHeader />
-        <main className="flex-1 overflow-hidden md:overflow-hidden overflow-y-auto md:overflow-y-hidden">
+        <main className="flex-1 overflow-y-auto">
           {children}
         </main>
         <Analytics />

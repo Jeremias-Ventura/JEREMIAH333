@@ -17,19 +17,16 @@ html, body {
   background-color: #0a0f1e; /* Dark blue background for browser chrome */
 }
 
-/* Desktop: fixed 100vh, no scrolling */
+/* Allow scrolling on all screen sizes */
+html, body {
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Desktop: full height for pages that need it */
 @media (min-width: 768px) {
   html, body {
     height: 100vh;
-    overflow: hidden;
-  }
-}
-
-/* Mobile: allow scrolling */
-@media (max-width: 767px) {
-  html, body {
-    min-height: 100vh;
-    overflow-y: auto;
   }
 }
 

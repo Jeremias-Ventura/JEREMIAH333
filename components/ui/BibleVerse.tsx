@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
-import { getRandomVerse, type BibleVerse } from "@/lib/bible-verses";
+import { getRandomVerse, type BibleVerse } from "@/lib/utils/bible-verses";
 
 interface BibleVerseDisplayProps {
   onNewSession?: () => void;
@@ -41,7 +41,7 @@ const BibleVerseDisplay = forwardRef<
       {/* New Verse Button */}
       <button
         onClick={loadNewVerse}
-        className="mb-1 sm:mb-3 sm:mt-0 mt-2 text-sm text-slate-400 transition-colors hover:text-white hover:cursor-pointer focus:outline-none px-4 py-2 rounded-2xl hover:bg-slate-800 uppercase "
+        className="mb-1 sm:mb-3 sm:mt-0 mt-2 text-xs text-slate-500 transition-colors hover:text-slate-300 hover:cursor-pointer focus:outline-none px-4 py-2 rounded-2xl hover:bg-slate-900/40 uppercase tracking-wider font-light"
       >
         New Verse
       </button>
@@ -52,10 +52,10 @@ const BibleVerseDisplay = forwardRef<
         }`}
       >
         {/* Verse Text - Large and prominent */}
-        <p className="text-2xl md:text-3xl lg:text-4xl leading-relaxed text-slate-100 font-normal max-w-2xl mx-auto">
+        <p className="text-2xl md:text-3xl lg:text-4xl leading-relaxed text-slate-100 font-light max-w-2xl mx-auto">
           {verse.text}
         </p>
-        <p className="mt-6 text-base md:text-lg font-light text-white">
+        <p className="mt-6 text-base md:text-lg font-light text-slate-400">
           {verse.reference}
         </p>
       </div>
