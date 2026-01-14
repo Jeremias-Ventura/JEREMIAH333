@@ -91,7 +91,7 @@ export default function EmailLoginForm() {
         </Link>
       </div>
 
-      <Button type="submit" loading={loading}>
+      <Button type="submit" loading={loading} className='cursor-pointer'>
         Sign In
       </Button>
     </form>

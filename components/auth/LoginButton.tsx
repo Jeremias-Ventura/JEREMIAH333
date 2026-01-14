@@ -43,7 +43,7 @@ export function LoginButton({ provider }: LoginButtonProps) {
   return (
     <button
       onClick={handleLogin}
-      className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-6 py-3 text-white hover:bg-white/20 transition-colors"
+      className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-6 py-3 text-white hover:bg-white/20 transition-colors cursor-pointer"
     >
       {config.icon}
       <span>{config.label}</span>
