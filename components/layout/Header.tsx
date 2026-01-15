@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useAuth } from '@/hooks/useAuth'
+import { useAuthContext } from '@/contexts/AuthContext'
 import { UserMenu } from '@/components/auth/UserMenu'
 import { useState, useEffect } from 'react'
 
 export default function Header() {
-  const { user, loading } = useAuth()
+  const { user, loading } = useAuthContext()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {

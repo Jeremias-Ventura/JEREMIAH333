@@ -3,6 +3,7 @@ import { Lora } from "next/font/google";
 import "./globals.css";
 import ConditionalHeader from "@/components/layout/ConditionalHeader";
 import { Analytics } from "@vercel/analytics/react";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -111,11 +112,13 @@ export default function RootLayout({
       <body
         className={`${lora.variable} font-sans antialiased h-full md:h-full flex flex-col`}
       >
-        <ConditionalHeader />
-        <main className="flex-1 overflow-y-auto">
-          {children}
-        </main>
-        <Analytics />
+        <AuthProvider>
+          <ConditionalHeader />
+          <main className="flex-1 overflow-y-auto">
+            {children}
+          </main>
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   );

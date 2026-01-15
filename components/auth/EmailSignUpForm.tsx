@@ -6,9 +6,11 @@ import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import { signUpWithEmail } from '@/app/actions/auth'
 import { getAuthErrorMessage } from '@/lib/utils/auth-errors'
+import { useAuthContext } from '@/contexts/AuthContext'
 
 export default function EmailSignUpForm() {
   const router = useRouter()
+  const { refreshUser } = useAuthContext()
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -55,20 +57,21 @@ export default function EmailSignUpForm() {
 
       if (result.error) {
         setError(getAuthErrorMessage(result.error))
+        setLoading(false)
       } else if (result.needsConfirmation) {
         // Show success message and redirect to confirmation page
         setSuccess(true)
         setTimeout(() => {
           router.push(`/confirm?email=${encodeURIComponent(email)}`)
         }, 2000)
+        setLoading(false)
       } else {
         // No confirmation needed, redirect to dashboard
+        await refreshUser()  // Immediately update auth state
         router.push('/dashboard')
-        router.refresh()
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.')
-    } finally {
       setLoading(false)
     }
   }

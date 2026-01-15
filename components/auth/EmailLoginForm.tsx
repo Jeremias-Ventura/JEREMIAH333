@@ -7,9 +7,11 @@ import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import { signInWithEmail } from '@/app/actions/auth'
 import { getAuthErrorMessage } from '@/lib/utils/auth-errors'
+import { useAuthContext } from '@/contexts/AuthContext'
 
 export default function EmailLoginForm() {
   const router = useRouter()
+  const { refreshUser } = useAuthContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -28,10 +30,8 @@ export default function EmailLoginForm() {
         setError(getAuthErrorMessage(result.error))
         setLoading(false)
       } else {
-        // Success - force refresh then redirect to ensure auth state updates
-        router.refresh()
-        // Small delay to let auth state propagate
-        await new Promise(resolve => setTimeout(resolve, 100))
+        // Success - immediately update UI by refreshing auth state
+        await refreshUser()
         router.push('/dashboard')
       }
     } catch (err) {
