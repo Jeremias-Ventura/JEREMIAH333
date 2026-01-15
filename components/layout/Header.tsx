@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { useAuthContext } from '@/contexts/AuthContext'
 import { useTimerContext } from '@/contexts/TimerContext'
 import { UserMenu } from '@/components/auth/UserMenu'
@@ -16,10 +17,15 @@ export default function Header() {
   }, [])
 
   return (
-    <header
-      className={`w-full relative z-50 transition-opacity duration-300 ease-in-out ${
-        isTimerRunning ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+    <motion.header
+      initial={{ opacity: 1, y: 0 }}
+      animate={{
+        opacity: isTimerRunning ? 0 : 1,
+        y: isTimerRunning ? -5 : 0,
+      }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      className="w-full relative z-50"
+      style={{ pointerEvents: isTimerRunning ? 'none' : 'auto' }}
     >
       <div className="mx-auto flex max-w-full items-center justify-between px-10 pt-9 mb-0 sm:-mb-20">
         <Link
@@ -46,6 +52,6 @@ export default function Header() {
           )}
         </div>
       </div>
-    </header>
+    </motion.header>
   )
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { getRandomVerse, type BibleVerse } from "@/lib/utils/bible-verses";
 
 interface BibleVerseDisplayProps {
@@ -16,14 +17,9 @@ const BibleVerseDisplay = forwardRef<
   BibleVerseDisplayProps
 >(({ onNewSession }, ref) => {
   const [verse, setVerse] = useState<BibleVerse>(getRandomVerse());
-  const [isFading, setIsFading] = useState(false);
 
   const loadNewVerse = () => {
-    setIsFading(true);
-    setTimeout(() => {
-      setVerse(getRandomVerse());
-      setIsFading(false);
-    }, 300);
+    setVerse(getRandomVerse());
   };
 
   useImperativeHandle(ref, () => ({
@@ -46,19 +42,24 @@ const BibleVerseDisplay = forwardRef<
         New Verse
       </button>
 
-      <div
-        className={`flex flex-col items-center text-center transition-opacity duration-300 ${
-          isFading ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        {/* Verse Text - Large and prominent */}
-        <p className="text-2xl md:text-3xl lg:text-4xl leading-relaxed text-slate-100 font-light max-w-2xl mx-auto">
-          {verse.text}
-        </p>
-        <p className="mt-6 text-base md:text-lg font-light text-slate-400">
-          {verse.reference}
-        </p>
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={verse.text}
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="flex flex-col items-center text-center"
+        >
+          {/* Verse Text - Large and prominent */}
+          <p className="text-2xl md:text-3xl lg:text-4xl leading-relaxed text-slate-100 font-light max-w-2xl mx-auto">
+            {verse.text}
+          </p>
+          <p className="mt-6 text-base md:text-lg font-light text-slate-400">
+            {verse.reference}
+          </p>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 });

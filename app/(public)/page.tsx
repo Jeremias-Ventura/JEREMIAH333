@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Timer from '@/components/Timer'
+import { motion } from 'framer-motion'
+import Timer from '@/components/ui/Timer'
 import BibleVerseDisplay, { type BibleVerseDisplayRef } from '@/components/ui/BibleVerse'
 import ShootingStars from '@/components/ui/ShootingStars'
 import MeteorShowerBackground from '@/components/ui/MeteorShowerBackground'
@@ -72,12 +73,17 @@ export default function Home() {
     <div className="min-h-screen md:h-full flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 p-8 sm:pr-10 md:pr-13 lg:pr-30 relative">
       {/* Subtle meteor shower background - always running */}
       <MeteorShowerBackground />
-      
+
       {/* Shooting Stars Animation - across whole page when timer completes */}
       {sessionCompleted && <ShootingStars />}
 
       {/* Timer - Top on mobile, Left on desktop */}
-      <div className="flex-1 flex items-center justify-center md:justify-end w-full md:max-w-2xl mt-10 ">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: 'easeInOut' }}
+        className="flex-1 flex items-center justify-center md:justify-end w-full md:max-w-2xl mt-10"
+      >
         <Timer
           onComplete={handleSessionComplete}
           onStart={handleTimerStart}
@@ -85,12 +91,17 @@ export default function Home() {
           onReset={handleTimerReset}
           initialMinutes={25}
         />
-        </div>
+      </motion.div>
 
       {/* Verse - Bottom on mobile, Right on desktop */}
-      <div className="flex-1 flex items-center justify-center md:justify-start w-full md:max-w-2xl sm:-mt-1">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3, ease: 'easeInOut' }}
+        className="flex-1 flex items-center justify-center md:justify-start w-full md:max-w-2xl sm:-mt-1"
+      >
         <BibleVerseDisplay ref={verseRef} />
-        </div>
+      </motion.div>
     </div>
   )
 }
