@@ -4,6 +4,7 @@ import "./globals.css";
 import ConditionalHeader from "@/components/layout/ConditionalHeader";
 import { Analytics } from "@vercel/analytics/react";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { TimerProvider } from "@/contexts/TimerContext";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -113,11 +114,13 @@ export default function RootLayout({
         className={`${lora.variable} font-sans antialiased h-full md:h-full flex flex-col`}
       >
         <AuthProvider>
-          <ConditionalHeader />
-          <main className="flex-1 overflow-y-auto">
-            {children}
-          </main>
-          <Analytics />
+          <TimerProvider>
+            <ConditionalHeader />
+            <main className="flex-1 overflow-y-auto">
+              {children}
+            </main>
+            <Analytics />
+          </TimerProvider>
         </AuthProvider>
       </body>
     </html>

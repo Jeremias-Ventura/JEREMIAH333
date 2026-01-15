@@ -7,12 +7,13 @@ import ShootingStars from '@/components/ui/ShootingStars'
 import MeteorShowerBackground from '@/components/ui/MeteorShowerBackground'
 import { createSession } from '@/app/actions/sessions'
 import { useAuth } from '@/hooks/useAuth'
+import { useTimerContext } from '@/contexts/TimerContext'
 
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
   const [sessionCompleted, setSessionCompleted] = useState(false)
-  const [isTimerRunning, setIsTimerRunning] = useState(false)
+  const { isTimerRunning, setIsTimerRunning } = useTimerContext()
   const verseRef = useRef<BibleVerseDisplayRef>(null)
   const { user } = useAuth()
   const verseChangeIntervalRef = useRef<NodeJS.Timeout | null>(null)

@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 import { useAuthContext } from '@/contexts/AuthContext'
+import { useTimerContext } from '@/contexts/TimerContext'
 import { UserMenu } from '@/components/auth/UserMenu'
 import { useState, useEffect } from 'react'
 
 export default function Header() {
   const { user, loading } = useAuthContext()
+  const { isTimerRunning } = useTimerContext()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -14,7 +16,11 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="w-full relative z-50">
+    <header
+      className={`w-full relative z-50 transition-opacity duration-300 ease-in-out ${
+        isTimerRunning ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}
+    >
       <div className="mx-auto flex max-w-full items-center justify-between px-10 pt-9 mb-0 sm:-mb-20">
         <Link
           href="/"
