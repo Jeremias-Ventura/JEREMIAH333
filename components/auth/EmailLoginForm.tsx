@@ -26,14 +26,16 @@ export default function EmailLoginForm() {
 
       if (result.error) {
         setError(getAuthErrorMessage(result.error))
+        setLoading(false)
       } else {
-        // Success - redirect to dashboard
-        router.push('/dashboard')
+        // Success - force refresh then redirect to ensure auth state updates
         router.refresh()
+        // Small delay to let auth state propagate
+        await new Promise(resolve => setTimeout(resolve, 100))
+        router.push('/dashboard')
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.')
-    } finally {
       setLoading(false)
     }
   }
